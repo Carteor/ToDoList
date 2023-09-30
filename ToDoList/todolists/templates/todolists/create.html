@@ -1,0 +1,16 @@
+<form action="{% url 'todolists:create' %}" method="post">
+    {% csrf_token %}
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title" required><br><br>
+
+    <label for="description">Description:</label><br>
+    <textarea id="description" name="description"></textarea><br><br>
+
+    <label for="completed">Completed:</label><br>
+    <input type="checkbox" id="completed" name="completed" value="false"></textarea><br><br>
+
+    <label for="due_date">Due_date:</label><br>
+    <input type="date" id="due_date" name="due_date"><br><br>
+
+    <input type="submit" value="Submit">
+</form>

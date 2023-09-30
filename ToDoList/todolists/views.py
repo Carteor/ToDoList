@@ -1,5 +1,5 @@
-from django.http import HttpResponse, Http404
-from django.shortcuts import get_object_or_404, render
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, render, redirect
 
 from .models import Task
 
@@ -34,8 +34,19 @@ def task_create(request):
 
 #This view allows user to edit and update.html existing tasks
 def task_update(request, task_id):
-    response = "You are updating task %s."
-    return HttpResponse(response % task_id)
+    task = get_object_or_404(Task, id=task_id)
+
+    if request.method == 'POST':
+        task.title = request.POST.get('title')
+        task.description = request.POST.get('description')
+        task.completed = 'completed' in request.POST
+        task.due_date = request.POST.get('due_date')
+
+        task.save()
+
+        return redirect('index.html')
+
+    return render(request, 'update_task.html', {'task': task})
 
 #This view allows to delete a specific task
 def task_delete(request, task_id):
