@@ -3,4 +3,5 @@
 <p>{{ task.completed }}</p>
 <p>{{ task.due_date }}</p>
 
+<a href="{% url 'todolists:update' task.id %}">Update</a>
 <a href="{% url 'todolists:delete' task.id %}">Delete</a>

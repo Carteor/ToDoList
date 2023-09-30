@@ -44,14 +44,15 @@ def task_update(request, task_id):
 
         task.save()
 
-        return redirect('index.html')
+        return redirect('todolists:index')
 
-    return render(request, 'update_task.html', {'task': task})
+    return render(request, 'todolists/update.html', {'task': task})
 
 #This view allows to delete a specific task
 def task_delete(request, task_id):
-    response = "You are deleting task %s."
-    return HttpResponse(response % task_id)
+    task = get_object_or_404(Task, pk=task_id)
+    task.delete()
+    return redirect('todolists:index')
 
 #This view toggles a specific task as complete or incomplete
 # def task_complete(request, task_id):
