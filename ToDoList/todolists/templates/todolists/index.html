@@ -1,11 +1,19 @@
-{% if task_list %}
-    <ul>
+{% extends 'todolists/base_generic.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h1 class="mb-4">Tasks</h1>
+    {% if task_list %}
+    <ul class="list-group">
         {% for task in task_list %}
-            <li><a href="{% url 'todolists:detail' task.id %}">{{ task.title }}</a></li>
+            <li class="list-group-item">
+                <a href="{% url 'todolists:detail' task.id %}">{{ task.title }}</a></li>
+                <a class="btn btn-danger float-right" href="{% url 'todolists:delete' task.id %}">Delete</a>
+                <a class="btn btn-primary float-right mr-2" href="{% url 'todolists:update' task.id %}">Update</a>
+            </li>
         {% endfor %}
     </ul>
 {% else %}
     <p>No tasks are available.</p>
 {% endif %}
-
-<a href="{% url 'todolists:create' %}">Create</a>
+{% endblock %}

@@ -1,16 +1,21 @@
-<form action="{% url 'todolists:update' task.id %}" method="post">
-    {% csrf_token %}
-    <label for="title">Title:</label><br>
-    <input type="text" id="title" name="title" value="{{ task.title }}" required><br><br>
+{% extends 'todolists/base_generic.html' %}
 
-    <label for="description">Description:</label><br>
-    <textarea id="description" name="description">{{ task.description }}</textarea><br><br>
+{% block content %}
+    <form action="{% url 'todolists:update' task.id %}" method="post">
+        {% csrf_token %}
 
-    <label for="completed">Completed:</label><br>
-    <input type="checkbox" id="completed" name="completed" value="false" {% if task.completed %} checked {% endif %}></textarea><br><br>
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" value="{{ task.title }}" required><br><br>
 
-    <label for="due_date">Due_date:</label><br>
-    <input type="date" id="due_date" name="due_date" value="{{ task.due_date|date:'Y-m-d' }}"><br><br>
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description">{{ task.description }}</textarea><br><br>
 
-    <input type="submit" value="Update">
-</form>
+        <label for="completed">Completed:</label><br>
+        <input type="checkbox" id="completed" name="completed" value="false" {% if task.completed %} checked {% endif %}></textarea><br><br>
+
+        <label for="due_date">Due_date:</label><br>
+        <input type="date" id="due_date" name="due_date" value="{{ task.due_date|date:'Y-m-d' }}"><br><br>
+
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+{% endblock %}

@@ -1,5 +1,14 @@
-<form method="post">
-    {% csrf_token %}
-    <p>Are you sure you want to delete "{{ object }}"?</p>
-    <input type="submit" value="Confirm">
-</form>
+{% extends 'base_generic.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="alert alert-danger" role="alert">
+    <h4 class="alert-heading">Warning!</h4>
+    <p>Are you sure you want to delete "{{ task }}"?</p>
+    <hr>
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-danger" value="Confirm Delete">
+    </form>
+</div>
+{% endblock %}

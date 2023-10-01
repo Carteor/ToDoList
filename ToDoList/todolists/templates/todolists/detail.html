@@ -1,7 +1,15 @@
-<h1>{{ task.title }}</h1>
-<p>{{ task.description }}</p>
-<p>{{ task.completed }}</p>
-<p>{{ task.due_date }}</p>
+{% extends 'todolists/base_generic.html' %}
+{% load crispy_forms_tags %}
 
-<a href="{% url 'todolists:update' task.id %}">Update</a>
-<a href="{% url 'todolists:delete' task.id %}">Delete</a>
+{% block content %}
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title">{{ task.title }}</h5>
+        <p class="card-text">{{ task.description }}</p>
+        <p class="card-text">{{ task.completed }}</p>
+        <p class="card-text">{{ task.due_date }}</p>
+        <a href="{% url 'todolists:update' task.id %}" class="btn btn-primary">Update</a>
+        <a href="{% url 'todolists:delete' task.id %}" class="btn btn-danger">Delete</a>
+    </div>
+</div>
+{% endblock %}
