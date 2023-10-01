@@ -1,2 +1,5 @@
 .idea/
 techspec.md
+ToDoList/ToDoList/__pycache__/
+ToDoList/todolists/__pycache__/
+ToDoList/todolists/migrations/__pycache__/
