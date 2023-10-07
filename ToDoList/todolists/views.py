@@ -21,22 +21,6 @@ class CreateView(generic.CreateView):
     fields = ['title', 'description', 'completed', 'due_date']
     success_url = reverse_lazy('todolists:index')
 
-#This view allows user to edit and update.html existing tasks
-# def task_update(request, task_id):
-#     task = get_object_or_404(Task, id=task_id)
-#
-#     if request.method == 'POST':
-#         task.title = request.POST.get('title')
-#         task.description = request.POST.get('description')
-#         task.completed = 'completed' in request.POST
-#         task.due_date = request.POST.get('due_date')
-#
-#         task.save()
-#
-#         return redirect('todolists:index')
-#
-#     return render(request, 'todolists/update.html', {'task': task})
-
 class UpdateView(generic.UpdateView):
     model = Task
     fields = ['title', 'description', 'completed', 'due_date']
